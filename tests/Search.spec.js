@@ -17,7 +17,7 @@ test.describe("search the product", async () => {
     test("with Invalid product details", async () => {
         await searchFunction.SearchInvalid("wertert5")
     })
-    test("with no stock product details", async () => {
+    test("with no  product available", async () => {
         await searchFunction.SearchInvalid("windows")
     })
     test("with empty details", async () => {
