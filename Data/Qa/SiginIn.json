@@ -1,0 +1,7 @@
+{
+    "firstName":"Eshwar",
+    "lastName" : "Kumar",
+    "TelephoneNumber" :"13456789",
+    "Password" : "IceCream@2",
+    "invalidPassword" : "Ic"
+}

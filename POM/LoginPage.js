@@ -5,7 +5,7 @@ class Login {
     }
 
     async gotoURL(){
-        await this.page.goto('https://awesomeqa.com/ui/')
+        await this.page.goto(process.env.BASEURL)
     }
 
     async ClickLoginLink(){

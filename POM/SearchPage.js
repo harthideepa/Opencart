@@ -15,7 +15,7 @@ class SearchPage
 
     async search(productName)
     {
-        await this.page.getByRole('textbox', { name: 'Search' }).click();
+        await this.page.locator("//input[@placeholder='Search']").click();
         await this.page.getByRole('textbox', { name: 'Search', exact: true }).fill(productName);
         await this.page.getByRole('textbox', { name: 'Search', exact: true }).press('Enter');
         await this.productSearch(productName)

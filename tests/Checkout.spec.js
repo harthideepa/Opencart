@@ -1,0 +1,48 @@
+const {test} = require ('@playwright/test')
+const addToCart = require('../Utils/AddToCart') 
+const find = require('../Utils/Search')
+const login = require('../Utils/Login')
+const Checkout = require('../Utils/Checkout')
+
+test.describe("Checkout the items", async ()=>{
+    let AddToCartFunction, searchfunction ,loginFunction, checkoutFunction;
+    test.beforeEach(async ({page})=>{
+        AddToCartFunction=new addToCart(page)
+        searchfunction = new find(page)
+        loginFunction = new login(page)
+        checkoutFunction = new Checkout(page)
+        checkoutFunction.gotourl()
+    })
+    test("from the cart ",async ()=>{
+        await loginFunction.loginUser("deepa@gmail.com","IceCream@2")
+        await searchfunction.searchProduct('macbook')
+        await AddToCartFunction.ClickAddToCart("macbook")
+        await searchfunction.searchProduct('macbook')
+        await AddToCartFunction.ClickAddToCart("macbook Air")
+        await AddToCartFunction.viewcart()
+        await checkoutFunction.checkout()
+    })
+    test("without login",async ()=>{
+        await searchfunction.searchProduct('macbook')
+        await AddToCartFunction.ClickAddToCart("macbook")
+        await searchfunction.searchProduct('macbook')
+        await AddToCartFunction.ClickAddToCart("macbook Air")
+        await AddToCartFunction.viewcart()
+        await checkoutFunction.checkoutWithoutLogin()
+    })
+    
+    test("without selecting terms and conditions",async ()=>{
+        await loginFunction.loginUser("deepa@gmail.com","IceCream@2")
+        await searchfunction.searchProduct('macbook')
+        await AddToCartFunction.ClickAddToCart("macbook")
+        await searchfunction.searchProduct('macbook')
+        await AddToCartFunction.ClickAddToCart("macbook Air")
+        await AddToCartFunction.viewcart()
+        await checkoutFunction.checkoutWithoutTerms()
+        await AddToCartFunction.viewcart()
+        await AddToCartFunction.emptyTheCart()
+    })
+    test("3",async ()=>{})
+    test("4",async ()=>{})
+    test("t",async ()=>{})
+})
